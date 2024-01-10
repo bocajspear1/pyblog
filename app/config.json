@@ -1,0 +1,11 @@
+{
+    "site_name": "",
+    "owner_name": "",
+    "db_type": "redis",
+    "db_host": "localhost",
+    "db_name": "",
+    "db_username": "",
+    "db_password": "",
+    "username": "admin",
+    "password": "password"
+}

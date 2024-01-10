@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Contact</title>
+        {% include 'head.html' %}
+    </head>
+    <body>
+        <header>
+            <h1>Contact</h1>
+            <nav class="clearfix">
+                <div class="float-left">
+                    <a href="/">Home</a>
+                    {% for pinned in pinned_list %}
+                    <a href="/?page={{ pinned.filename }}">{{ pinned.title }}</a>
+                    {% endfor %}
+                </div>
+            </nav>
+        </header>
+        <main>
+            <form method="post" action="/contact">
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input type="text" name="email">
+                   
+                    <label for="title">Title</label>
+                    <input type="text" name="title">
+                    
+
+                    <label for="commentField">Message</label>
+                    <textarea name="content" height="500px" id="content-textarea"></textarea>
+                    
+                    <br>
+                    <input class="button-primary" type="submit" value="Send">
+                </fieldset>
+              </form> 
+        </main>
+        
+    </body>
+</html>

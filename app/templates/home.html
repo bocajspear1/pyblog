@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Home</title>
+        {% include 'head.html' %}
+    </head>
+    <body>
+        <header>
+            <h1>{{ page_name }}</h1>
+            <nav class="clearfix">
+                <div class="float-left">
+                    <a href="/">Home</a>
+                    {% for pinned in pinned_list %}
+                    <a href="/?page={{ pinned.filename }}">{{ pinned.title }}</a>
+                    {% endfor %}
+                </div>
+                <div class="float-right">
+                    {% if content is defined  %}
+                    <a href="/edit?page={{ filename }}">+ Edit</a>
+                    {% else %}
+                    <a href="/edit">+ New</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+        <main>
+            {% if content is defined  %}
+                {{ content|safe }}
+            {% else %}
+            <table>
+                <thead>
+                  <tr>
+                    <th>Article</th>
+                    <th>Published</th>
+                    <th>Tags</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for article in article_list %}
+                    <tr>
+                        <td>
+                            <h4><a href="/?page={{ article.filename }}">{{ article.title }}</a></h4>
+                            {{ article.description }}
+                        </td>
+                        <td>
+                            <strong>{{ article.last_updated }}</strong>
+                        </td>
+                        <td>
+                            {% for tag in article.tags %}
+                            <a href="/?tag={{ tag }}">{{ tag }}</a>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                {% for page in range(total_pages) %}
+                <a href="/?offset={{ loop.index }}">{{ loop.index }}</a>
+                {% endfor %}
+                
+            {% endif %}    
+        </main>
+        
+    </body>
+</html>

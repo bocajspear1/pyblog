@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Editor</title>
+        {% include 'head.html' %}
+    </head>
+    <body>
+        <header>
+            <h1>Editor</h1>
+            <nav class="clearfix">
+                <div class="float-left">
+                    <a href="/">Home</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <form method="post" action="/edit">
+                <fieldset>
+                    <label for="filename">Filename</label>
+                    {% if filename is defined  %}
+                    <input type="text" value="{{ filename }}" disabled>
+                    <input type="hidden" name="filename" value="{{ filename }}">
+                    {% else %}
+                    <input type="text" name="filename">
+                    {% endif %}
+                    <label for="title">Title</label>
+                    {% if title is defined  %}
+                    <input type="text" name="title" value="{{ title }}">
+                    {% else %}
+                    <input type="text" name="title">
+                    {% endif %}
+                    <label for="description">Description</label>
+                    {% if description is defined  %}
+                    <input type="text" name="description" value="{{ description }}">
+                    {% else %}
+                    <input type="text" name="description">
+                    {% endif %}
+                    <label for="tags">Tags</label>
+                    {% if tags is defined  %}
+                    <input type="text" name="tags" value="{{ tags }}">
+                    {% else %}
+                    <input type="text" name="tags">
+                    {% endif %}
+
+                    <label for="commentField">Content</label>
+                    <textarea name="content" height="500px" id="content-textarea">{{ content }}</textarea>
+
+
+                    <label class="label-inline" for="pinned">Is Pinned?</label>
+                    {% if pinned %}
+                    <input type="checkbox" name="pinned" checked>
+                    {% else %}
+                    <input type="checkbox" name="pinned">
+                    {% endif %}
+                    
+                    <br>
+                    <input class="button-primary" type="submit" value="Done">
+                </fieldset>
+              </form> 
+        </main>
+        
+    </body>
+</html>
